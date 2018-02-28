@@ -28,27 +28,24 @@
     <script src="blockly/gs.js"></script>
 
     <xml id="toolbox" style="display: none">
-      <block type="controls_if"></block>
-      <block type="controls_repeat_ext"></block>
-      <block type="logic_compare"></block>
-      <block type="logic_boolean"></block>
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="text"></block>
-      <block type="text_print"></block>
-      <block type="variables_set"></block>
-      <block type="variables_get"></block>
       <block type="player_move_up"></block>
       <block type="player_move_left"></block>
       <block type="player_move_right"></block>
       <block type="player_move_down"></block>
     </xml>
 
-    <div id="blocklyArea">
+    <!-- Four divs for block-based, text-based, icons, and actual game stage -->
+    <div class="wrapper">
+      <div>Blockly</div>
+      <div>Code</div>
+      <div>Game</div>
+
+
       <div id="blocklyDiv"></div>
-      <textarea id="textarea"></textarea>
+      <textarea id="codeDiv"></textarea>
+      <div id="divGameStage"></div>
     </div>
-    <div id="divGameStage"></div>
+
     <script type="text/javascript">
       loadCanvas("divGameStage");
     </script>
@@ -62,7 +59,7 @@
 
       function myUpdateFunction(event) {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
-        document.getElementById('textarea').value = code;
+        document.getElementById('codeDiv').value = code;
       }
     </script>
     <!-- blockly -->

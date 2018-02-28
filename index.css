@@ -1,37 +1,37 @@
-body {
-    margin: 0;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-canvas {
-  margin-top: 20px;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 0;
-}
-
-#canvasArea {
-  position: relative;
+.wrapper {
+  width: 100%;
   height: 100vh;
-}
-
-.codeBox{
-  width: 500px;
-  height: 675px;
-  float: right;
-  margin-top: 215px;
-  z-index: 99;
-}
-
-#commandBar{
-  position: absolute;
-}
-
-#blocklyArea {
-  margin-top: 20px;
-  float: left;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 800px;
+  grid-template-columns: 400px 400px 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.wrapper > div:nth-child(-n+3) {
+  background: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid white;
+}
+
+#blocklyDiv {
+  width: 100%;
+}
+
+#codeDiv{
+  width: 100%;
+  border: none;
+  background: #eee;
+}
+
+#divGameStage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

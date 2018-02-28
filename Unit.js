@@ -9,7 +9,8 @@ class Unit {
   }
 
   moveBy(x, y) {
-    this.moveTo(this.x + x, this.y + y);
+    this.x += y;
+    this.y += x;
   }
 
   moveTo(x, y, callback) {

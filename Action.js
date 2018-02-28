@@ -12,11 +12,11 @@ class Action {
     switch(this.type) {
       case "R":
       this.typeSymbol = "👉"; break;
-      case "F":
+      case "U":
       this.typeSymbol = "👆"; break;
       case "L":
       this.typeSymbol = "👈"; break;
-      case "B":
+      case "D":
       this.typeSymbol = "👇"; break;
 
 

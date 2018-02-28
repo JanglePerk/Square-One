@@ -11,8 +11,21 @@ class Stage {
     this.ctx = canvas.getContext('2d');
     this.board = []; // 2-D board grid
     this.actions = []; // 2-D actions
-    this.workspace = [];
-    this.player = new Player(this.canvas, canvas.width / 5, canvas.height / 5, 30, 30);
+    // console.log(stageInfo[stageLevel].blocks);
+    for (let i = 0; i < Object.keys(stageInfo[stageLevel].blocks).length; i++) {
+      console.log(i);
+      let block = stageInfo[stageLevel].blocks[i];
+      if (block[2] == 5) {
+        this.player = new Player(canvas,
+                                 block[0] * canvas.height / Stage.STAGE_SIZE,
+                                 block[1] * canvas.height / Stage.STAGE_SIZE,
+                                 canvas.height / Stage.STAGE_SIZE,
+                                 canvas.height / Stage.STAGE_SIZE);
+        this.player_init = [block[0] * canvas.height / Stage.STAGE_SIZE,
+                            block[1] * canvas.height / Stage.STAGE_SIZE];
+        break;
+      }
+    }
     this.units = [this.player];
     this.stageInfo = stageInfo;
     /* debugging */
@@ -25,18 +38,18 @@ class Stage {
       boardLength: canvas.height,
       blockLength: canvas.height/ Stage.STAGE_SIZE
     };
-    // this.actionsDim = {
-    //   avail_x: 0,
-    //   avail_y: 0,
-    //   workspace_x : 20 + this.boardDim.boardLength,
-    //   workspace_y : this.boardDim.y,
-    //   avail_width: canvas.width,
-    //   avail_height: canvas.height * 0.15,
-    //   workspace_width: canvas.width - 20 - this.boardDim.boardLength - 10,
-    //   workspace_height: this.boardDim.boardLength,
-    //   blockWidth: canvas.width * 0.1,
-    //   blockHeight: canvas.height * 0.1
-    // };
+    this.actionsDim = {
+      avail_x: 0,
+      avail_y: 0,
+      workspace_x : 20 + this.boardDim.boardLength,
+      workspace_y : this.boardDim.y,
+      avail_width: canvas.width,
+      avail_height: canvas.height * 0.15,
+      workspace_width: canvas.width - 20 - this.boardDim.boardLength - 10,
+      workspace_height: this.boardDim.boardLength,
+      blockWidth: canvas.width * 0.1,
+      blockHeight: canvas.height * 0.1
+    };
     this._initBoard(stageLevel);
 
     /* event */
@@ -57,12 +70,41 @@ class Stage {
     this.draw = this.draw.bind(this);
   }
 
-  // startActions() {
-  //   this.actions.forEach(action => {
-  //     this.player.runAction(action);
-  //   })
-  //   this.player.runAction(this.actions[0]);
-  // }
+  startActions() {
+    let code = document.getElementById('codeDiv').value;
+    this.actions = [];
+    let commands = code.split("\n");
+    this.player.x = this.player_init[0];
+    this.player.y = this.player_init[1];
+    commands.forEach(action => {
+      if (action.length > 0) {
+        console.log(action);
+        switch(action) {
+          case "player.moveUp();":
+            console.log("up");
+            this.actions.push(new Action("U", this.canvas, 1, 1, 1, 1));
+            break;
+          case "player.moveLeft();":
+            this.actions.push(new Action("L", this.canvas, 1, 1, 1, 1));
+            break;
+          case "player.moveRight();":
+            this.actions.push(new Action("R", this.canvas, 1, 1, 1, 1));
+            break;
+          case "player.moveDown();":
+            this.actions.push(new Action("D", this.canvas, 1, 1, 1, 1));
+            break;
+        }
+      }
+    });
+    // console.log(this.actions);
+    console.log(this.player);
+    this.actions.forEach(action => {
+      this.player.runAction(action);
+    });
+    console.log(this.canvas.height / Stage.STAGE_SIZE);
+    console.log(this.player);
+    console.log(this.player);
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -76,7 +118,6 @@ class Stage {
     let ctx = this.ctx;
     let board = this.board;
     let dim = this.boardDim;
-
     ctx.beginPath();
     ctx.strokeStyle = Stage.BOARD_LINE_COLOR;
     ctx.strokeRect(dim.x, dim.y, dim.boardLength, dim.boardLength);
@@ -131,16 +172,11 @@ class Stage {
             ctx.closePath();
             ctx.fill();
           }
-          else if (type == 5) {
-            ctx.beginPath();
-            ctx.fillStyle = "purple";
-            ctx.arc(x + dim.blockLength / 2, y + dim.blockLength / 2, dim.blockLength / 4, 0, 2 * Math.PI);
-            ctx.fill();
-          }
         }
         ctx.strokeRect(dim.x + cn * dim.blockLength, dim.y + rn * dim.blockLength, dim.blockLength, dim.blockLength);
       })
     })
+    this.player.draw();
   }
 
   // _drawActions() {
@@ -172,7 +208,6 @@ class Stage {
     let board = new Array(Stage.STAGE_SIZE)
     .fill(0)
     .map(() => new Array(Stage.STAGE_SIZE).fill(0));
-    // let data = this.stageInfo[stageLevel];
     let data = this.stageInfo[stageLevel];
     data.blocks.forEach(b => {
       board[b[0]][b[1]] = b[2];

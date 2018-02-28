@@ -7,7 +7,7 @@ class Game {
 	     this.ctx = canvas.getContext('2d');
 	     this.stageLevel = 1;
 
-	     this._createStartButton();
+	     this._createRunButton();
     }
 
     start() {
@@ -24,9 +24,9 @@ class Game {
 		this.stage.draw();
     }
 
-    _createStartButton() {
+    _createRunButton() {
 		let button = document.createElement("button");
-		button.innerText = "START";
+		button.innerText = "RUN CODE";
 		button.style.position = "absolute";
 		button.style.top = "10px";
 		button.style.right = "20px";
@@ -43,14 +43,13 @@ class Game {
 
 Game.CANVAS_BORDER = 3
 Game.BOARD_DATA = {
-    1: {
-  blocks: [
-      [3, 2, 4],
-      [3, 3, 1],
-      [4, 3, 5]
-  ],
-  actions: ['L', 'F', 'B', 'R']
-    }
+  1: {
+      blocks: [
+                [3, 2, 4],
+                [3, 3, 1],
+                [4, 3, 5]
+              ]
+      }
 };
 /*
 button {
