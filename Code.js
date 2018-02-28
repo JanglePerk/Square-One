@@ -1,18 +1,18 @@
 var codeInBox;
 var actionsToBeRun = [];
-
+var canvasArea = document.querySelector("#canvasArea");
 
 var codeButton = document.createElement("button");
 codeButton.innerText = "Get Code";
 codeButton.onclick = getCode;
 codeButton.className = "getCodeButton";
-document.body.append(codeButton);
+canvasArea.append(codeButton);
 
 var runButton = document.createElement("button");
 runButton.innerText = "Run Code";
 runButton.onclick = runCode;
 runButton.className = "runCodeButton";
-document.body.append(runButton);
+canvasArea.append(runButton);
 
 var actionDiv = document.createElement("div");
 actionDiv.id = "commandBar";
@@ -21,7 +21,7 @@ actionDiv.style.marginLeft = "3px";
 actionDiv.style.height =  Math.floor((window.innerWidth * .67 / 4 - 20 ) - (window.innerWidth * .67 * .15)) + "px";
 actionDiv.style.width =  Math.floor(window.innerWidth / 2) - 6 + "px";
 actionDiv.style.outline = "3px solid black";
-document.body.append(actionDiv);
+canvasArea.append(actionDiv);
 
 var actionsRow = document.createElement("p");
 actionsRow.style.fontSize = "x-large";

@@ -11,31 +11,31 @@ class Game {
     }
 
     start() {
-	this.loadStage();
-	this.draw();
+		this.loadStage();
+		this.draw();
     }
     loadStage() {
-	this.stage = new Stage(this.stageLevel, this.canvas);
-	console.log("Stage Loaded");
-	console.log(this.stage.board);
+		this.stage = new Stage({}, this.stageLevel, this.canvas);
+		console.log("Stage Loaded");
+		console.log(this.stage.board);
     }
     // 500x500 for every stage.
     draw() {
-	this.stage.draw();
+		this.stage.draw();
     }
 
     _createStartButton() {
-	let button = document.createElement("button");
-	button.innerText = "START";
-	button.style.position = "absolute";
-	button.style.top = "10px";
-	button.style.right = "20px";
-	button.style.zIndex = "10";
-	document.body.append(button);
+		let button = document.createElement("button");
+		button.innerText = "START";
+		button.style.position = "absolute";
+		button.style.top = "10px";
+		button.style.right = "20px";
+		button.style.zIndex = "10";
+		document.body.append(button);
 
-	button.addEventListener('click', function() {
-	    this.stage.startActions();
-	}.bind(this));
+		button.addEventListener('click', function() {
+			this.stage.startActions();
+		}.bind(this));
 
     }
 

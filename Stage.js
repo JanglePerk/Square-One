@@ -172,7 +172,8 @@ class Stage {
     let board = new Array(Stage.STAGE_SIZE)
     .fill(0)
     .map(() => new Array(Stage.STAGE_SIZE).fill(0));
-    let data = this.stageInfo[stageLevel];
+    // let data = this.stageInfo[stageLevel];
+    let data = Stage.BOARD_DATA[stageLevel];
     data.blocks.forEach(b => {
       board[b[0]][b[1]] = b[2];
     })
@@ -198,3 +199,13 @@ class Stage {
   Stage.CAPTION_TEXT_COLOR = "black";
   Stage.ACTIONS_BGCOLOR = "lightgray";
   Stage.WORKSPACE_BGCOLOR = "lightgray";
+  Stage.BOARD_DATA = {
+      1: {
+    blocks: [
+        [3, 2, 4],
+        [3, 3, 1],
+        [4, 3, 5]
+    ],
+    actions: ['L', 'F', 'B', 'R']
+      }
+  };

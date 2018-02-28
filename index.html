@@ -4,11 +4,70 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
-    <title>SquareOne</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
-    <canvas id = "gameCanvas" width="600" height="200" style="border:3px solid #000000;">
-    Your browser does not support the canvas element.
-    </canvas>
+    <title>Square-One</title>
+    <link href="index.css?v=2" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+      function loadCanvas(id) {
+          var canvas = document.createElement('canvas');
+          div = document.getElementById(id);
+          canvas.id     = "gameCanvas";
+          canvas.width  = 100;
+          canvas.height = 100;
+          canvas.style.zIndex   = 8;
+          canvas.style.position = "absolute";
+          canvas.style.border   = "1px solid";
+          div.appendChild(canvas);
+      }
+    </script>
+
+    <!-- blockly -->
+    <script src="https://blockly-demo.appspot.com/static/blockly_compressed.js"></script>
+    <script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
+    <script src="https://blockly-demo.appspot.com/static/msg/js/en.js"></script>
+    <script src="https://blockly-demo.appspot.com/static/javascript_compressed.js"></script>
+    <script src="blockly/gs.js"></script>
+
+    <xml id="toolbox" style="display: none">
+      <block type="controls_if"></block>
+      <block type="controls_repeat_ext"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_boolean"></block>
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="text"></block>
+      <block type="text_print"></block>
+      <block type="variables_set"></block>
+      <block type="variables_get"></block>
+      <block type="player_move_up"></block>
+      <block type="player_move_left"></block>
+      <block type="player_move_right"></block>
+      <block type="player_move_down"></block>
+    </xml>
+
+    <div id="wrapper">
+      <div id="blocklyArea">
+        <div id="blocklyDiv"></div>
+        <textarea id="textarea"></textarea>
+      </div>
+      <div id="divGameStage"></div>
+      <script type="text/javascript">
+        loadCanvas("divGameStage");
+      </script>
+    </div>
+
+    <script>
+
+      var workspace = Blockly
+        .inject('blocklyDiv',{toolbox: document.getElementById('toolbox')});
+
+      workspace.addChangeListener(myUpdateFunction);
+
+      function myUpdateFunction(event) {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        document.getElementById('textarea').value = code;
+      }
+    </script>
+    <!-- blockly -->
 
     <script src = "CanvasHelper.js"></script>
     <script src = "Unit.js"></script>
