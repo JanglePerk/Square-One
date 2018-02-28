@@ -14,7 +14,7 @@
           canvas.width  = 100;
           canvas.height = 100;
           canvas.style.zIndex   = 8;
-          canvas.style.position = "absolute";
+          canvas.style.position = "relative";
           canvas.style.border   = "1px solid";
           div.appendChild(canvas);
       }
@@ -43,12 +43,16 @@
 
       <div id="blocklyDiv"></div>
       <textarea id="codeDiv"></textarea>
-      <div id="divGameStage"></div>
+      <div id="gameAndIcons">
+        <div id="divGameStage"></div>
+        <div id="iconBar"><input type="text" id="icons"</div>
+      </div>
     </div>
 
     <script type="text/javascript">
       loadCanvas("divGameStage");
     </script>
+
 
     <script>
 

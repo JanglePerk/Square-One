@@ -30,8 +30,26 @@
   background: #eee;
 }
 
+#gameAndIcons {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 #divGameStage {
-  display: flex;
+  position: relative;
+  margin: auto 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+#iconBar {
+  position: relative;
+  margin: auto 5px;
+  width: 100%;
+  border: 3px black;
   justify-content: center;
   align-items: center;
 }

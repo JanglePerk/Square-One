@@ -1,3 +1,12 @@
+/*
+This class represents an action that the player can make. The basic four
+actions are moving up, down, left, or right. These actions can also be
+drawn on a canvas using the draw() function. The constructor takes the
+type of action as a string, the canvas, the coordinates of the top left
+corner, the width, and the height. The latter four arguments are only
+used for drawing the action.
+*/
+
 class Action {
   constructor(type, canvas, x, y, w, h) {
     this.type = type;
@@ -22,10 +31,9 @@ class Action {
 
     }
 
-    this.onMousemove = this.onMousemove.bind(this);
-
   }
 
+  // draw function for drawing actions using a canvas
   draw() {
     let ctx = this.ctx;
     ctx.beginPath();
@@ -44,30 +52,6 @@ class Action {
     ctx.fillStyle = Action.TEXT_COLOR;
     ctx.font = fontSize + "px serif";
     ctx.fillText(this.typeSymbol, this.x + this.w / 3, this.y + this.h * 3 / 4);
-  }
-
-  onMousedown(x, y) { // x, y: coord of the mouse click
-    if (
-      x > this.x && x < this.x + this.w &&
-      y > this.y && y < this.y + this.h
-    ) {
-      this.activated = true;
-      this.canvas.addEventListener('mousemove', this.onMousemove);
-      return true;
-    }
-    return false;
-  }
-
-  onMousemove(evt) {
-    let x = evt.clientX - this.canvas.x - this.w / 2;
-    let y = evt.clientY - this.canvas.y - this.h / 2;
-    this.x = x;
-    this.y = y;
-  }
-
-  onMouseup() {
-    this.activated = false;
-    this.canvas.removeEventListener('mousemove', this.onMousemove);
   }
 }
 
