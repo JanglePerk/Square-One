@@ -171,6 +171,9 @@ class Stage {
   }
 
   _initBoard(stageLevel) {
+    document.getElementById("icons").style.height="200px";
+    document.getElementById("icons").style.width="500px";
+    document.getElementById("icons").style.fontSize="50pt";
     let board = new Array(Stage.STAGE_SIZE)
     .fill(0)
     .map(() => new Array(Stage.STAGE_SIZE).fill(0));
