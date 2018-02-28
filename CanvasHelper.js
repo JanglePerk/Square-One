@@ -1,3 +1,5 @@
+// Creates padding for canvas.
+
 class CanvasHelper {
   static fillRect(ctx, x, y, w, h, padding) {
     ctx.fillRect(x + padding,

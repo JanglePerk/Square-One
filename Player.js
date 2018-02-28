@@ -1,8 +1,13 @@
+/*
+The player class, which extends Unit.
+*/
+
 class Player extends Unit {
   constructor(canvas, x, y, w, h) {
     super(canvas, x, y, w, h);
   }
 
+  // executes all of the collected actions.
   runAction(action) {
     console.log(this.y);
     console.log(this.y - this.w);
@@ -24,6 +29,7 @@ class Player extends Unit {
     console.log("action");
   }
 
+  // updates the position of the player on the board.
   draw() {
     let ctx = this.ctx;
     ctx.beginPath();

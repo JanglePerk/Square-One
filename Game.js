@@ -1,3 +1,11 @@
+/*
+This is the class for running an instance of the game. loadStage() creates a
+stage with given board data, which is currently represented as a constant at
+the bottom of the file. draw() simply calls the stage's draw function. I have
+yet to implement winning or losing mechanisms. The "RUN CODE" button runs
+the assembled/written code.
+*/
+
 class Game {
     constructor (canvas) {
 	     this.canvas = canvas;
@@ -51,11 +59,3 @@ Game.BOARD_DATA = {
               ]
       }
 };
-/*
-button {
-position: absolute;
-top: 10px;
-right: 20px;
-z-index: 10;
-}
-*/

@@ -1,9 +1,29 @@
-// 0 = water
-// 1 - empty block
-// 2 - monster
-// 3 - box
-// 4 - prize
-// 5 - player
+/*
+This is the class for Stages in the game. (Board and Stage are sometimes interchanged.)
+Stages can be customized by creating something similar to Game.BOARD_DATA in Game.js:
+STAGE_DATA = {
+  1: {
+      blocks: [
+                [row, column, type],
+              ]
+      }
+  2: {}, etc.
+}
+The six types of blocks available currently are:
+0 = water
+1 - empty block
+2 - monster
+3 - box
+4 - prize
+5 - player
+*/
+
+0 = water
+1 - empty block
+2 - monster
+3 - box
+4 - prize
+5 - player
 
 class Stage {
   constructor(stageInfo, stageLevel, canvas) {
@@ -28,10 +48,8 @@ class Stage {
     }
     this.units = [this.player];
     this.stageInfo = stageInfo;
-    /* debugging */
-     	// this.ctx.beginPath();
-     	// this.ctx.fillRect(10, 10, dim.blockWidth / 4,dim.blockWidth / 4);
 
+    // dimensions of the board
     this.boardDim = {
       x: 0,
       y: 0,
@@ -45,11 +63,14 @@ class Stage {
     this.draw = this.draw.bind(this);
   }
 
+  // resets the board
   restart() {
     this.player.x = this.player_init[0];
     this.player.y = this.player_init[1];
   }
 
+  // takes the written or generated text code and changes it into executable
+  // actions
   startActions() {
     let code = document.getElementById('codeDiv').value;
     this.actions = [];
@@ -77,8 +98,8 @@ class Stage {
         }
       }
     });
+
     this.restart();
-    // console.log(this.actions);
     this.actions.forEach(action => {
       this.player.runAction(action);
     });
@@ -94,6 +115,7 @@ class Stage {
     }
   }
 
+  // calls various draw functions
   draw() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this._drawBoard();
@@ -101,6 +123,7 @@ class Stage {
     requestAnimationFrame(this.draw);
   }
 
+  // draws every part of the board
   _drawBoard() {
     let ctx = this.ctx;
     let board = this.board;
@@ -166,10 +189,12 @@ class Stage {
     this.player.draw();
   }
 
+  // draws units (only player for now)
   _drawUnits() {
     this.units.forEach(u => u.draw());
   }
 
+  // sets up the inital board
   _initBoard(stageLevel) {
     document.getElementById("icons").style.height="200px";
     document.getElementById("icons").style.width="500px";

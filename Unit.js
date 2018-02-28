@@ -1,3 +1,8 @@
+/*
+This is a class for any units in the game. Currently, the only Unit is Player,
+but additional Units can easily be added.
+*/
+
 class Unit {
   constructor(canvas, x, y, w, h) {
     this.canvas = canvas;
@@ -8,11 +13,14 @@ class Unit {
     this.h = h;
   }
 
+  // simple function to move Unit
   moveBy(x, y) {
     this.x += y;
     this.y += x;
   }
 
+  // moves to specified location, making sure that the given location and the
+  // current location are different.
   moveTo(x, y, callback) {
     let dx = x - this.x;
     let dy = y - this.y;
@@ -35,6 +43,7 @@ class Unit {
     });
   }
 
+  // draws the Unit
   draw() {
     let ctx = this.ctx;
     ctx.beginPath();
