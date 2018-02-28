@@ -16,27 +16,27 @@ class Stage {
     this.units = [this.player];
     this.stageInfo = stageInfo;
     /* debugging */
-    //  	this.ctx.beginPath();
-    //  	this.ctx.fillRect(10, 10,dim.blockWidth / 4,dim.blockWidth / 4);
+     	// this.ctx.beginPath();
+     	// this.ctx.fillRect(10, 10, dim.blockWidth / 4,dim.blockWidth / 4);
 
     this.boardDim = {
-      x: 10,
-      y: canvas.height / 4 - 10,
-      boardLength: 3 * canvas.height / 4,
-      blockLength: 3 * canvas.height / 4 / Stage.STAGE_SIZE
+      x: 0,
+      y: 0,
+      boardLength: canvas.height,
+      blockLength: canvas.height/ Stage.STAGE_SIZE
     };
-    this.actionsDim = {
-      avail_x: 0,
-      avail_y: 0,
-      workspace_x : 20 + this.boardDim.boardLength,
-      workspace_y : this.boardDim.y,
-      avail_width: canvas.width,
-      avail_height: canvas.height * 0.15,
-      workspace_width: canvas.width - 20 - this.boardDim.boardLength - 10,
-      workspace_height: this.boardDim.boardLength,
-      blockWidth: canvas.width * 0.1,
-      blockHeight: canvas.height * 0.1
-    };
+    // this.actionsDim = {
+    //   avail_x: 0,
+    //   avail_y: 0,
+    //   workspace_x : 20 + this.boardDim.boardLength,
+    //   workspace_y : this.boardDim.y,
+    //   avail_width: canvas.width,
+    //   avail_height: canvas.height * 0.15,
+    //   workspace_width: canvas.width - 20 - this.boardDim.boardLength - 10,
+    //   workspace_height: this.boardDim.boardLength,
+    //   blockWidth: canvas.width * 0.1,
+    //   blockHeight: canvas.height * 0.1
+    // };
     this._initBoard(stageLevel);
 
     /* event */
@@ -52,22 +52,22 @@ class Stage {
       this.actions.forEach(action => action.onMouseup());
     })
 
-    this.startActions();
+    // this.startActions();
 
     this.draw = this.draw.bind(this);
   }
 
-  startActions() {
-    // this.actions.forEach(action => {
-    //   this.player.runAction(action);
-    // })
-    this.player.runAction(this.actions[0]);
-  }
+  // startActions() {
+  //   this.actions.forEach(action => {
+  //     this.player.runAction(action);
+  //   })
+  //   this.player.runAction(this.actions[0]);
+  // }
 
   draw() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     this._drawBoard();
-    this._drawActions();
+    // this._drawActions();
     this._drawUnits();
     requestAnimationFrame(this.draw);
   }
@@ -143,26 +143,26 @@ class Stage {
     })
   }
 
-  _drawActions() {
-    let ctx = this.ctx;
-    let actions = this.actions;
-    let dim = this.actionsDim;
-    let workspace = this.workspace;
-
-    ctx.beginPath();
-    ctx.fillStyle = Stage.ACTIONS_BGCOLOR;
-    ctx.fillRect(dim.avail_x, dim.avail_y, dim.avail_width, dim.avail_height);
-    ctx.fillStyle = Action.TEXT_COLOR;
-    let fontSize = 30;
-    ctx.font = fontSize + "px serif";
-    this.actions.forEach(a => a.draw());
-    ctx.fillText("Available Actions", 5, 25);
-    ctx.fillStyle = Stage.WORKSPACE_BGCOLOR;
-    ctx.fillRect(dim.workspace_x, dim.workspace_y, dim.workspace_width, dim.workspace_height);
-    ctx.fillStyle = Action.TEXT_COLOR;
-    this.workspace.forEach(a => a.draw());
-    ctx.fillText("Workspace", dim.workspace_x, dim.workspace_y * 0.95);
-  }
+  // _drawActions() {
+  //   let ctx = this.ctx;
+  //   let actions = this.actions;
+  //   let dim = this.actionsDim;
+  //   let workspace = this.workspace;
+  //
+  //   ctx.beginPath();
+  //   ctx.fillStyle = Stage.ACTIONS_BGCOLOR;
+  //   ctx.fillRect(dim.avail_x, dim.avail_y, dim.avail_width, dim.avail_height);
+  //   ctx.fillStyle = Action.TEXT_COLOR;
+  //   let fontSize = 30;
+  //   ctx.font = fontSize + "px serif";
+  //   this.actions.forEach(a => a.draw());
+  //   ctx.fillText("Available Actions", 5, 25);
+  //   ctx.fillStyle = Stage.WORKSPACE_BGCOLOR;
+  //   ctx.fillRect(dim.workspace_x, dim.workspace_y, dim.workspace_width, dim.workspace_height);
+  //   ctx.fillStyle = Action.TEXT_COLOR;
+  //   this.workspace.forEach(a => a.draw());
+  //   ctx.fillText("Workspace", dim.workspace_x, dim.workspace_y * 0.95);
+  // }
 
   _drawUnits() {
     this.units.forEach(u => u.draw());
@@ -173,23 +173,23 @@ class Stage {
     .fill(0)
     .map(() => new Array(Stage.STAGE_SIZE).fill(0));
     // let data = this.stageInfo[stageLevel];
-    let data = Stage.BOARD_DATA[stageLevel];
+    let data = this.stageInfo[stageLevel];
     data.blocks.forEach(b => {
       board[b[0]][b[1]] = b[2];
     })
 
     this.board = board;
-    this.actions = data.actions.map((type, i) => {
-      let x = this.actionsDim.x + this.actionsDim.blockWidth * i;
-      let y = this.actionsDim.height / 3;
-      return new Action(
-        type,
-        this.canvas,
-        x,
-        y,
-        this.actionsDim.blockWidth,
-        this.actionsDim.blockHeight);
-      }); // TODO deep copy
+    // this.actions = data.actions.map((type, i) => {
+    //   let x = this.actionsDim.x + this.actionsDim.blockWidth * i;
+    //   let y = this.actionsDim.height / 3;
+    //   return new Action(
+    //     type,
+    //     this.canvas,
+    //     x,
+    //     y,
+    //     this.actionsDim.blockWidth,
+    //     this.actionsDim.blockHeight);
+    //   }); // TODO deep copy
       return board;
     }
   }
@@ -199,13 +199,3 @@ class Stage {
   Stage.CAPTION_TEXT_COLOR = "black";
   Stage.ACTIONS_BGCOLOR = "lightgray";
   Stage.WORKSPACE_BGCOLOR = "lightgray";
-  Stage.BOARD_DATA = {
-      1: {
-    blocks: [
-        [3, 2, 4],
-        [3, 3, 1],
-        [4, 3, 5]
-    ],
-    actions: ['L', 'F', 'B', 'R']
-      }
-  };

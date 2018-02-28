@@ -24,7 +24,7 @@ class Unit {
     this.x += x;
     this.y += y;
 
-    if (dx === 0 && dt === 0) {
+    if (dx === 0 && dy === 0) {
       callback();
       return;
     }

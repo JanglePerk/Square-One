@@ -1,6 +1,6 @@
 var codeInBox;
 var actionsToBeRun = [];
-var canvasArea = document.querySelector("#canvasArea");
+var canvasArea = document.querySelector("#divGameStage");
 
 var codeButton = document.createElement("button");
 codeButton.innerText = "Get Code";

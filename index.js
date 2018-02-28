@@ -1,6 +1,6 @@
 const canvas = document.getElementById("gameCanvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerWidth * 2 / 3;
+canvas.width = 300;
+canvas.height = 300;
 
 const game = new Game(canvas);
 game.start();

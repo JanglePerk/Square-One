@@ -44,16 +44,14 @@
       <block type="player_move_down"></block>
     </xml>
 
-    <div id="wrapper">
-      <div id="blocklyArea">
-        <div id="blocklyDiv"></div>
-        <textarea id="textarea"></textarea>
-      </div>
-      <div id="divGameStage"></div>
-      <script type="text/javascript">
-        loadCanvas("divGameStage");
-      </script>
+    <div id="blocklyArea">
+      <div id="blocklyDiv"></div>
+      <textarea id="textarea"></textarea>
     </div>
+    <div id="divGameStage"></div>
+    <script type="text/javascript">
+      loadCanvas("divGameStage");
+    </script>
 
     <script>
 
@@ -74,8 +72,11 @@
     <script src = "Player.js"></script>
     <script src = "Action.js"></script>
     <script src = "Stage.js"></script>
+    <script type="text/javascript">
+    // console.log("Stage.js loaded");
+    </script>
     <script src = "Game.js"></script>
     <script src = "index.js"></script>
-    <script src = "Code.js"></script>
+    <!-- <script src = "Code.js"></script> -->
   </body>
 </html>

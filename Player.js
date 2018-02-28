@@ -12,10 +12,10 @@ class Player extends Unit {
       this.moveBy(-30, 0);
       break;
       case "F":
-      this.move(0, -30);
+      this.moveBy(0, -30);
       break;
       case "B":
-      this.move(0, 30);
+      this.moveBy(0, 30);
       break;
     }
   }

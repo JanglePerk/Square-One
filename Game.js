@@ -15,7 +15,7 @@ class Game {
 		this.draw();
     }
     loadStage() {
-		this.stage = new Stage({}, this.stageLevel, this.canvas);
+		this.stage = new Stage(Game.BOARD_DATA, this.stageLevel, this.canvas);
 		console.log("Stage Loaded");
 		console.log(this.stage.board);
     }
@@ -42,7 +42,16 @@ class Game {
 }
 
 Game.CANVAS_BORDER = 3
-
+Game.BOARD_DATA = {
+    1: {
+  blocks: [
+      [3, 2, 4],
+      [3, 3, 1],
+      [4, 3, 5]
+  ],
+  actions: ['L', 'F', 'B', 'R']
+    }
+};
 /*
 button {
 position: absolute;
